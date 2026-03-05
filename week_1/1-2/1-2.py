@@ -1,5 +1,11 @@
 import cv2
 import numpy as np
+import sys
+import os
+
+
+base_path = os.path.dirname(os.path.abspath(__file__)) # 현재 실행 중인 파일(1-2.py)의 절대 경로를 기준으로 설정
+img_path = os.path.join(base_path, '..', 'cat.png') # 한 단계 상위 폴더의 cat.png 경로를 생성
 
 drawing = False # 마우스 클릭 상태를 확인하기 위한 플래그 변수
 color = (255, 0, 0) # 기본 붓 색상을 파란색으로 설정
@@ -22,7 +28,11 @@ def paint(event, x, y, flags, param): # 마우스 이벤트 처리를 위한 콜
     elif event == cv2.EVENT_LBUTTONUP or event == cv2.EVENT_RBUTTONUP: # 마우스 버튼을 떼었을 때
         drawing = False # 그리기 상태를 False로 변경
 
-img = np.ones((600, 800, 3), dtype=np.uint8) * 255 # 800x600 크기의 흰색 배경 이미지 생성
+img = cv2.imread(img_path) # cat.png 이미지를 로드
+
+if img is None:
+    sys.exit() # 이미지 파일이 없으면 종료
+
 cv2.namedWindow('Paint') # 'Paint'라는 이름의 윈도우 창 생성
 cv2.setMouseCallback('Paint', paint) # 'Paint' 창에 마우스 콜백 함수 등록
 
