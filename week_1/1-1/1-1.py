@@ -2,7 +2,7 @@ import cv2 as cv
 import numpy as np
 import sys
 
-img = cv.imread('cat.png') # 이미지 로드 
+img = cv.imread('../cat.png') # 이미지 로드 
 
 gray = cv.cvtColor(img, cv.COLOR_BGR2GRAY) # 그레이스케일 변환 
 

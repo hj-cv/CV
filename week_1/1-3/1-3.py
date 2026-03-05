@@ -1,8 +1,12 @@
 import cv2 as cv
 import sys
 import numpy as np
+import os
 
-img_orig = cv.imread('cat.png') # 원본 이미지 로드
+base_path = os.path.dirname(os.path.abspath(__file__)) # 현재 실행 중인 파일(1-3.py)의 절대 경로를 기준으로 설정
+img_path = os.path.join(base_path, '..', 'cat.png') # 한 단계 상위 폴더의 cat.png 경로를 생성
+
+img_orig = cv.imread(img_path) # 원본 이미지 로드
 if img_orig is None:
     sys.exit() # 파일이 없을 경우 종료
 
