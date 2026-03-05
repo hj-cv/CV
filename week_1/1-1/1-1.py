@@ -1,8 +1,11 @@
 import cv2 as cv
 import numpy as np
 import sys
+import os
 
-img = cv.imread('../cat.png') # 이미지 로드 
+base_path = os.path.dirname(os.path.abspath(__file__)) # 현재 실행 중인 파일(1-1.py)의 절대 경로를 기준으로 설정
+img_path = os.path.join(base_path, '..', 'cat.png') # 한 단계 상위 폴더의 cat.png 경로를 생성
+img = cv.imread(img_path) # 이미지 로드 
 
 gray = cv.cvtColor(img, cv.COLOR_BGR2GRAY) # 그레이스케일 변환 
 
