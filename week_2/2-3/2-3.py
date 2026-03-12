@@ -49,9 +49,11 @@ for name, (x, y, w, h) in rois.items(): # 시각화 결과에 ROI 박스 및 이
     cv2.putText(left_color, name, (x, y - 8), cv2.FONT_HERSHEY_SIMPLEX, 0.6, (0, 255, 0), 2) # 이름 작성
 
 cv2.imwrite(str(output_dir / "disparity_color.jpg"), disparity_color) # 결과 시차 맵 저장
+cv2.imwrite(str(output_dir / "roi_result.jpg"), left_color) # ROI 사각형이 그려진 이미지 저장
 for name, data in results.items(): # 분석 데이터 터미널 출력 [cite: 111]
     print(f"{name}: Avg Disparity = {data['avg_disp']:.2f}, Avg Depth = {data['avg_depth']:.2f}")
 
 cv2.imshow('Disparity Map', disparity_color) # 결과 화면 표시
+cv2.imshow('ROI Result', left_color) # ROI 표시 이미지 출력
 cv2.waitKey(0) # 키 입력 대기
 cv2.destroyAllWindows() # 모든 창 닫기
